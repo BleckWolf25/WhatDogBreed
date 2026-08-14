@@ -155,9 +155,16 @@ self.addEventListener('fetch', (event) => {
 
   // ---------- DEV & API BYPASS
   if (
+    self.location.hostname === 'localhost' ||
+    self.location.hostname === '127.0.0.1' ||
     url.pathname.startsWith('/api/') ||
     url.pathname.startsWith('/@') ||
-    url.pathname.startsWith('/src/')
+    url.pathname.startsWith('/src/') ||
+    url.pathname.startsWith('/node_modules/') ||
+    url.pathname.startsWith('/.svelte-kit/') ||
+    url.pathname.startsWith('/__vite') ||
+    url.searchParams.has('import') ||
+    url.searchParams.has('t')
   ) {
     return;
   }

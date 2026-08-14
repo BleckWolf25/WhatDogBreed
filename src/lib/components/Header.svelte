@@ -3,13 +3,14 @@
   import { goto } from '$app/navigation';
   import {
     Camera,
+    ChevronDown,
     Dog,
     Download,
     GitCompare,
-    Globe,
     Heart,
     History,
     Moon,
+    Ruler,
     Search,
     Sun
   } from '@lucide/svelte';
@@ -143,10 +144,34 @@
           <span>{myDogName}</span>
         </a>
       {/if}
-      <button class="utility-btn" onclick={toggleUnitSystem} title="Switch measurement units">
-        <Globe size={15} strokeWidth={1.8} aria-hidden="true" />
+
+      <!-- Desktop Unit Toggle Button -->
+      <button
+        class="utility-btn desktop-only"
+        onclick={toggleUnitSystem}
+        title={`Switch measurement units (currently ${unitSystem === 'Imperial' ? 'US / lbs' : 'EU / kg'})`}
+        aria-label="Switch measurement units"
+      >
+        <Ruler size={15} strokeWidth={1.8} aria-hidden="true" />
         <span>{unitSystem === 'Imperial' ? 'US / lbs' : 'EU / kg'}</span>
       </button>
+
+      <!-- Mobile Unit Dropdown -->
+      <div class="mobile-only unit-dropdown-wrap" title="Switch measurement units">
+        <Ruler size={14} strokeWidth={1.8} aria-hidden="true" class="unit-dropdown-icon" />
+        <select
+          class="unit-dropdown-select"
+          aria-label="Switch measurement units"
+          value={unitSystem}
+          onchange={(e) => {
+            unitSystemStore.set((e.currentTarget as HTMLSelectElement).value as 'Imperial' | 'Metric');
+          }}
+        >
+          <option value="Imperial">US (lbs)</option>
+          <option value="Metric">EU (kg)</option>
+        </select>
+        <ChevronDown size={12} strokeWidth={2} aria-hidden="true" class="unit-dropdown-chevron" />
+      </div>
 
       {#if installPromptEvent}
         <button
@@ -183,6 +208,7 @@
     background: color-mix(in srgb, var(--bg-main) 94%, transparent);
     border-bottom: 1px solid var(--border-subtle);
     backdrop-filter: blur(16px);
+    padding-top: var(--safe-top);
   }
 
   .header-container {
@@ -287,6 +313,14 @@
     gap: 0.45rem;
   }
 
+  .desktop-only {
+    display: inline-flex;
+  }
+
+  .mobile-only {
+    display: none;
+  }
+
   .utility-btn,
   .theme-toggle-btn {
     min-height: 36px;
@@ -325,6 +359,66 @@
     color: var(--text-main);
   }
 
+  /* Mobile Unit Dropdown Styling */
+  .unit-dropdown-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    transition:
+      border-color 160ms ease,
+      background-color 160ms ease;
+  }
+
+  .unit-dropdown-wrap:hover,
+  .unit-dropdown-wrap:focus-within {
+    border-color: var(--border-highlight);
+    background: var(--accent-soft);
+    color: var(--text-main);
+  }
+
+  :global(.unit-dropdown-icon) {
+    position: absolute;
+    left: 0.5rem;
+    pointer-events: none;
+    color: var(--accent-primary);
+    flex-shrink: 0;
+  }
+
+  :global(.unit-dropdown-chevron) {
+    position: absolute;
+    right: 0.45rem;
+    pointer-events: none;
+    color: var(--text-subtle);
+    flex-shrink: 0;
+  }
+
+  .unit-dropdown-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    border: 0;
+    color: var(--text-main);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.4rem 1.45rem 0.4rem 1.65rem;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    outline: none;
+  }
+
+  .unit-dropdown-select option {
+    background: var(--bg-card);
+    color: var(--text-main);
+    font-size: 0.8rem;
+    padding: 0.4rem;
+  }
+
   .my-dog-btn {
     text-decoration: none;
     color: var(--accent-primary);
@@ -354,8 +448,20 @@
       padding: 0.65rem 0;
     }
 
-    .brand-copy span,
-    .utility-btn span {
+    .desktop-only {
+      display: none !important;
+    }
+
+    .mobile-only {
+      display: inline-flex !important;
+    }
+
+    .brand-copy span {
+      display: none;
+    }
+
+    .utility-btn.my-dog-btn span,
+    .utility-btn.install-btn span {
       display: none;
     }
 
@@ -365,17 +471,22 @@
       justify-content: flex-start;
       border-top: 1px solid var(--border-subtle);
       padding-top: 0.35rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
     }
 
     .nav-item {
-      min-height: 36px;
-      padding-inline: 0.55rem;
-      font-size: 0.72rem;
+      min-height: 38px;
+      padding-inline: 0.6rem;
+      font-size: 0.74rem;
+      scroll-snap-align: start;
+      flex-shrink: 0;
     }
 
     .nav-item::after {
-      right: 0.55rem;
-      left: 0.55rem;
+      right: 0.6rem;
+      left: 0.6rem;
     }
   }
 </style>

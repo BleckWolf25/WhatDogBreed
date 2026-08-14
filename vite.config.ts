@@ -12,7 +12,7 @@
  * SvelteKit plugin resolving compiler options directly from svelte.config.js.
  *
  * @since 05/08/2026
- * @updated 13/08/2026
+ * @updated 14/08/2026
  */
 // ---------- IMPORTS
 import { sveltekit } from '@sveltejs/kit/vite';
@@ -20,5 +20,8 @@ import { defineConfig } from 'vite';
 
 // ---------- CONFIGURATION
 export default defineConfig({
-  plugins: [sveltekit()]
+  plugins: [sveltekit()],
+  optimizeDeps: {
+    include: ['@vercel/analytics', '@lucide/svelte', 'dayjs', 'idb-keyval']
+  }
 });
