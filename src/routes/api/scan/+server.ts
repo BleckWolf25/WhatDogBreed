@@ -30,7 +30,7 @@ import type { ScanResult } from '$lib/types/scan';
 // ---------- CONFIGURATION
 
 export const config = {
-  maxDuration: 10
+  maxDuration: 60
 };
 
 // ---------- HTTP POST ENDPOINT

@@ -35,6 +35,8 @@ export const CANDIDATE_MODELS = [
   'gemini-2.5-flash'
 ];
 
+const PER_MODEL_TIMEOUT_MS = 12000;
+
 // ---------- CLASS: GeminiVisionError
 
 export class GeminiVisionError extends Error {
@@ -67,7 +69,8 @@ export class GeminiVisionAnalyzer implements VisionAnalyzer {
       attempt++;
       try {
         console.log(`[GeminiVisionAnalyzer] Requesting vision analysis with model ${modelName}...`);
-        const response = await this.ai.models.generateContent({
+
+        const requestPromise = this.ai.models.generateContent({
           model: modelName,
           contents: [
             {
@@ -83,6 +86,18 @@ export class GeminiVisionAnalyzer implements VisionAnalyzer {
             responseMimeType: 'application/json'
           }
         });
+
+        const timeoutPromise = new Promise<never>((_, reject) => {
+          setTimeout(
+            () =>
+              reject(
+                new Error(`Timeout of ${PER_MODEL_TIMEOUT_MS}ms exceeded for model ${modelName}`)
+              ),
+            PER_MODEL_TIMEOUT_MS
+          );
+        });
+
+        const response = await Promise.race([requestPromise, timeoutPromise]);
 
         const rawText = response.text;
         if (!rawText) {
