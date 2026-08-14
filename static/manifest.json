@@ -1,17 +1,65 @@
 {
-  "short_name": "WhatDogBreed",
+  "id": "/",
   "name": "What Dog Breed - Decode your dog’s genetic puzzle in seconds.",
+  "short_name": "WhatDogBreed",
+  "description": "Upload a dog photo for an estimated visual breed mix, recognizable traits, and practical care context.",
+  "start_url": "/scanner",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
+  "orientation": "any",
+  "background_color": "#0d1511",
+  "theme_color": "#0d1511",
+  "categories": ["utilities", "pets", "education", "lifestyle"],
   "icons": [
     {
       "src": "/WhatDogBreed.png",
       "sizes": "192x192 512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/WhatDogBreed.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
-  "start_url": "/scanner",
-  "background_color": "#0c110e",
-  "theme_color": "#99f7ab",
-  "display": "standalone",
-  "orientation": "portrait"
+  "shortcuts": [
+    {
+      "name": "Scan Photo",
+      "short_name": "Scan",
+      "description": "Upload or take a photo of a dog to identify breeds",
+      "url": "/scanner",
+      "icons": [{ "src": "/WhatDogBreed.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Breed Catalog",
+      "short_name": "Catalog",
+      "description": "Explore the complete dog breed encyclopedia",
+      "url": "/encyclopedia",
+      "icons": [{ "src": "/WhatDogBreed.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Compare Breeds",
+      "short_name": "Compare",
+      "description": "Side-by-side dog breed comparison",
+      "url": "/compare",
+      "icons": [{ "src": "/WhatDogBreed.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Breed Mixer",
+      "short_name": "Mixer",
+      "description": "Simulate and predict mixed breed traits",
+      "url": "/mixer",
+      "icons": [{ "src": "/WhatDogBreed.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Scan History",
+      "short_name": "History",
+      "description": "View saved dog scans on this device",
+      "url": "/history",
+      "icons": [{ "src": "/WhatDogBreed.png", "sizes": "192x192" }]
+    }
+  ]
 }

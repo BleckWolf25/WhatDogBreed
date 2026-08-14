@@ -32,6 +32,7 @@
   let photoQuality = $state<PhotoQualityResult | null>(null);
   let isCheckingQuality = $state(false);
   let isOffline = $state(false);
+  let activeDisplayDogUrl = $state('/images/goldenRetriever.jpg');
 
   let videoElement = $state<HTMLVideoElement | null>(null);
   let mediaStream = $state<MediaStream | null>(null);
@@ -183,6 +184,7 @@
     errorMessage = null;
     isSamplePhoto = true;
     sampleSourceUrl = url;
+    activeDisplayDogUrl = url;
     photoQuality = null;
 
     try {
@@ -383,7 +385,7 @@
     <div class="scanner-workspace surface">
       <div class="photo-panel">
         <div class="photo-panel-image">
-          <img src="/images/goldenRetriever.jpg" alt="" loading="lazy" decoding="async" />
+          <img src={activeDisplayDogUrl} alt="" loading="lazy" decoding="async" />
           <div class="photo-caption">
             <strong>Start with a clear view</strong>
             <span>Face, ears, coat, and body shape help build context.</span>
@@ -391,7 +393,16 @@
         </div>
         <div class="photo-strip" aria-label="Sample photo previews">
           {#each SAMPLE_DOGS as sample}
-            <img src={sample.url} alt={sample.name} loading="lazy" decoding="async" />
+            <button
+              type="button"
+              class="photo-strip-thumb"
+              class:active={activeDisplayDogUrl === sample.url}
+              onclick={() => (activeDisplayDogUrl = sample.url)}
+              title={`Preview ${sample.name}`}
+              aria-label={`Preview ${sample.name}`}
+            >
+              <img src={sample.url} alt={sample.name} loading="lazy" decoding="async" />
+            </button>
           {/each}
         </div>
       </div>
@@ -551,16 +562,25 @@
     grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
     min-height: 560px;
     overflow: hidden;
+    align-items: stretch;
   }
 
   .photo-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.75rem;
     padding: 1.15rem;
     border-right: 1px solid var(--border-subtle);
+    height: 100%;
+    min-height: 0;
   }
 
   .photo-panel-image {
     position: relative;
-    height: 440px;
+    flex: 1 1 0%;
+    min-height: 380px;
+    height: 100%;
     overflow: hidden;
     border-radius: var(--radius-md);
     background: var(--bg-surface);
@@ -605,15 +625,41 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0.5rem;
-    margin-top: 0.6rem;
+    margin-top: 0;
+    flex-shrink: 0;
   }
 
-  .photo-strip img {
-    width: 100%;
-    height: 48px;
+  .photo-strip-thumb {
+    display: block;
+    padding: 0;
+    border: 2px solid transparent;
     border-radius: var(--radius-sm);
+    background: transparent;
+    cursor: pointer;
+    overflow: hidden;
+    transition:
+      border-color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .photo-strip-thumb:hover,
+  .photo-strip-thumb.active {
+    border-color: var(--accent-primary);
+    transform: translateY(-1px);
+  }
+
+  .photo-strip-thumb img {
+    width: 100%;
+    height: 52px;
+    border-radius: calc(var(--radius-sm) - 2px);
     object-fit: cover;
     opacity: 0.84;
+    transition: opacity 160ms ease;
+  }
+
+  .photo-strip-thumb:hover img,
+  .photo-strip-thumb.active img {
+    opacity: 1;
   }
 
   .upload-panel {
@@ -997,12 +1043,15 @@
     }
 
     .photo-panel {
+      height: auto;
       border-right: 0;
       border-bottom: 1px solid var(--border-subtle);
     }
 
     .photo-panel-image {
-      height: min(62vw, 420px);
+      flex: none;
+      height: min(60vw, 380px);
+      min-height: 220px;
     }
 
     .upload-panel {
