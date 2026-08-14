@@ -1,0 +1,17 @@
+{
+  "short_name": "WhatDogBreed",
+  "name": "What Dog Breed - Decode your dog’s genetic puzzle in seconds.",
+  "icons": [
+    {
+      "src": "/WhatDogBreed.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/scanner",
+  "background_color": "#0c110e",
+  "theme_color": "#99f7ab",
+  "display": "standalone",
+  "orientation": "portrait"
+}

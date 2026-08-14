@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- ---------- FAVICON & APPLE TOUCH LOGO -->
+    <link rel="icon" type="image/png" href="/WhatDogBreed.png" />
+    <link rel="apple-touch-icon" href="/WhatDogBreed.png" />
+
+    <!-- ---------- RESPONSIVE & MOBILE PWA META -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0d1511" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- ---------- SEO SEARCH & METADATA -->
+    <title>What Dog Breed? - Understand the dog in front of you.</title>
+    <meta
+      name="description"
+      content="What Dog Breed - Upload a dog photo for an estimated visual breed mix, recognizable traits, and practical care context."
+    />
+    <meta
+      name="keywords"
+      content="dog breed scanner, what dog breed, dog photo analysis, dog breed identification, mixed breed estimate, dog care advice, dog temperament"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://whatdogbreed.app/" />
+
+    <!-- ---------- OPENGRAPH (FACEBOOK, LINKEDIN, DISCORD) SEO LOGO & CARD META -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="What Dog Breed" />
+    <meta
+      property="og:title"
+      content="What Dog Breed? - Decode your dog genetic puzzle in seconds."
+    />
+    <meta
+      property="og:description"
+      content="Upload a dog photo for an estimated visual breed mix, recognizable traits, and practical care context."
+    />
+    <meta property="og:image" content="/WhatDogBreed.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="What Dog Breed PWA Official Logo" />
+    <meta property="og:logo" content="/WhatDogBreed.png" />
+    <meta property="og:url" content="https://whatdogbreed.app/" />
+
+    <!-- ---------- TWITTER CARD SEO META -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="What Dog Breed? - Decode your dog genetic puzzle in seconds."
+    />
+    <meta
+      name="twitter:description"
+      content="Get an estimated visual breed mix, recognizable traits, and practical care context from a dog photo."
+    />
+    <meta name="twitter:image" content="/WhatDogBreed.png" />
+    <meta name="twitter:image:alt" content="What Dog Breed PWA Logo" />
+
+    <!-- ---------- JSON-LD STRUCTURED DATA SCHEMA.ORG -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "What Dog Breed",
+        "operatingSystem": "All",
+        "applicationCategory": "UtilitiesApplication",
+        "image": "/WhatDogBreed.png",
+        "logo": "/WhatDogBreed.png",
+        "url": "https://whatdogbreed.app/",
+        "description": "Upload a dog photo for an estimated visual breed mix, recognizable traits, and practical care context.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem('whatdogbreed_theme');
+          if (theme === 'light') document.body.classList.add('light-theme');
+        } catch (e) {}
+      })();
+    </script>
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>

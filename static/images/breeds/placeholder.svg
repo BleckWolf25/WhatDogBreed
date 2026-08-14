@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" role="img" aria-label="Breed photo coming soon">
+  <rect width="640" height="480" fill="#162019"/>
+  <rect x="1" y="1" width="638" height="478" fill="none" stroke="#2a3b31" stroke-width="2"/>
+  <circle cx="320" cy="190" r="52" fill="none" stroke="#79c98a" stroke-width="3"/>
+  <circle cx="296" cy="178" r="6" fill="#a5efb2"/>
+  <circle cx="344" cy="178" r="6" fill="#a5efb2"/>
+  <path d="M300 206 Q320 222 340 206" fill="none" stroke="#a5efb2" stroke-width="3" stroke-linecap="round"/>
+  <path d="M268 248 C268 300 292 330 320 330 C348 330 372 300 372 248 L372 220 C372 188 348 164 320 164 C292 164 268 188 268 220 Z" fill="none" stroke="#79c98a" stroke-width="3"/>
+  <text x="320" y="390" fill="#718278" font-family="system-ui,sans-serif" font-size="22" font-weight="600" text-anchor="middle">Photo coming soon</text>
+</svg>
