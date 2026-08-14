@@ -14,9 +14,7 @@
  * @since 05/08/2026
  * @updated 13/08/2026
  */
-
 // ---------- IMPORTS
-
 import { GoogleGenAI } from '@google/genai';
 import { getSystemAnalysisPrompt } from '$lib/server/ai/prompts';
 import {
@@ -26,19 +24,18 @@ import {
 import type { VisionAnalyzer, VisionAnalyzerInput } from '$lib/server/ai/types';
 
 // ---------- CONSTANTS
-
 export const GEMINI_VISION_MODEL = 'gemini-3.6-flash';
 export const CANDIDATE_MODELS = [
   'gemini-3.6-flash',
   'gemini-3.5-flash',
-  'gemini-3-flash',
-  'gemini-2.5-flash'
+  'gemini-3.5-flash-lite',
+  'gemini-3.1-flash-lite',
+  'gemini-3.7-flash'
 ];
 
-const PER_MODEL_TIMEOUT_MS = 12000;
+const PER_MODEL_TIMEOUT_MS = 25000;
 
 // ---------- CLASS: GeminiVisionError
-
 export class GeminiVisionError extends Error {
   constructor(
     message: string,
@@ -52,7 +49,6 @@ export class GeminiVisionError extends Error {
 }
 
 // ---------- CLASS: GeminiVisionAnalyzer
-
 export class GeminiVisionAnalyzer implements VisionAnalyzer {
   private readonly ai: GoogleGenAI;
 
@@ -105,7 +101,7 @@ export class GeminiVisionAnalyzer implements VisionAnalyzer {
         }
 
         const parsedData = JSON.parse(rawText) as GeminiAnalysisPayload;
-        return parseGeminiAnalysisResponse(parsedData, input.gender);
+        return parseGeminiAnalysisResponse(parsedData, input.gender, modelName);
       } catch (error: unknown) {
         lastError = error;
 

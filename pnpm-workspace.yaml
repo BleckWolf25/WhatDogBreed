@@ -3,3 +3,6 @@ allowBuilds:
   esbuild: true
   protobufjs: true
   sharp: true
+
+overrides:
+  cookie: '^0.7.2'
