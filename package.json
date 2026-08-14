@@ -19,7 +19,7 @@
     "pnpm": ">=9.0.0"
   },
   "overrides": {
-    "cookie": ">=0.7.0"
+    "cookie": "^0.7.2"
   },
   "scripts": {
     "dev": "vite dev",
