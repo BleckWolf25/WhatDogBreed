@@ -1,5 +1,5 @@
-onlyBuiltDependencies:
-  - '@google/genai'
-  - esbuild
-  - protobufjs
-  - sharp
+allowBuilds:
+  '@google/genai': true
+  esbuild: true
+  protobufjs: true
+  sharp: true
