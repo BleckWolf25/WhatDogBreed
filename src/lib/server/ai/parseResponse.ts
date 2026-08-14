@@ -14,15 +14,12 @@
  * @since 05/08/2026
  * @updated 13/08/2026
  */
-
 // ---------- IMPORTS
-
 import type { ScanAnalysis } from '$lib/server/ai/types';
 import type { BreedMixItem, OwnerGuidance } from '$lib/types/scan';
 import { summarizeCarePlan } from '$lib/guidance/buildOwnerGuidance';
 
 // ---------- TYPES
-
 export type GeminiAnalysisPayload = {
   isDog?: boolean;
   error?: string | null;
@@ -44,7 +41,6 @@ export type GeminiAnalysisPayload = {
 };
 
 // ---------- NORMALIZATION HELPERS
-
 function normalizeDetectedGender(
   userGender: 'Male' | 'Female' | undefined,
   rawGender: string | undefined
@@ -102,7 +98,8 @@ function normalizeOwnerGuidance(
 
 export function parseGeminiAnalysisResponse(
   parsedData: GeminiAnalysisPayload,
-  userGender?: 'Male' | 'Female'
+  userGender?: 'Male' | 'Female',
+  modelName?: string
 ): ScanAnalysis {
   // ---------- CANINE REJECTION GUARD
   if (
@@ -129,13 +126,17 @@ export function parseGeminiAnalysisResponse(
       ? summarizeCarePlan(ownerGuidance.carePlan)
       : 'Provide regular daily exercise and balanced nutrition suited for active dogs.');
 
+  const formattedModel = modelName
+    ? `Google Gemini ${modelName.replace(/^models\//, '')} Multimodal Vision`
+    : 'Google Gemini 3.6 Flash Multimodal Vision';
+
   // ---------- RETURN STRUCTURED ANALYSIS
   return {
     primaryBreed: parsedData.primaryBreed || 'German Shepherd',
     isMixed: Boolean(parsedData.isMixed),
     confidenceScore:
       typeof parsedData.confidenceScore === 'number' ? parsedData.confidenceScore : 0.92,
-    aiModelUsed: 'Google Gemini 3.6 Flash Multimodal Vision',
+    aiModelUsed: formattedModel,
     detectedGender: normalizeDetectedGender(userGender, parsedData.detectedGender),
     mixBreakdown: Array.isArray(parsedData.mixBreakdown) ? parsedData.mixBreakdown : [],
     visualTraits: Array.isArray(parsedData.visualTraits) ? parsedData.visualTraits : [],
