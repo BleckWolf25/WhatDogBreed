@@ -160,6 +160,23 @@
         <ChevronDown size={12} strokeWidth={2} aria-hidden="true" class="unit-dropdown-chevron" />
       </div>
 
+      <!-- Mobile Unit Dropdown -->
+      <div class="mobile-only unit-dropdown-wrap" title="Switch measurement units">
+        <Ruler size={14} strokeWidth={1.8} aria-hidden="true" class="unit-dropdown-icon" />
+        <select
+          class="unit-dropdown-select"
+          aria-label="Switch measurement units"
+          value={unitSystem}
+          onchange={(e) => {
+            unitSystemStore.set((e.currentTarget as HTMLSelectElement).value as 'Imperial' | 'Metric');
+          }}
+        >
+          <option value="Imperial">US (lbs)</option>
+          <option value="Metric">EU (kg)</option>
+        </select>
+        <ChevronDown size={12} strokeWidth={2} aria-hidden="true" class="unit-dropdown-chevron" />
+      </div>
+
       {#if installPromptEvent}
         <button
           class="utility-btn install-btn"
@@ -298,6 +315,14 @@
     align-items: center;
     justify-content: flex-end;
     gap: 0.45rem;
+  }
+
+  .desktop-only {
+    display: inline-flex;
+  }
+
+  .mobile-only {
+    display: none;
   }
 
   .utility-btn,
