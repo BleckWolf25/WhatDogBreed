@@ -14,6 +14,8 @@
     display: inline-flex;
     align-items: center;
     gap: 0.28rem;
+    white-space: nowrap;
+    flex-wrap: nowrap;
   }
 
   .dot {
@@ -21,6 +23,7 @@
     height: 8px;
     border-radius: 50%;
     background: color-mix(in srgb, var(--text-main) 16%, transparent);
+    flex-shrink: 0;
   }
 
   .dot.filled {
@@ -32,5 +35,22 @@
     color: var(--text-muted);
     font-size: 0.72rem;
     font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .rating-dots {
+      gap: 0.18rem;
+    }
+
+    .dot {
+      width: 6.5px;
+      height: 6.5px;
+    }
+
+    .rating-text {
+      margin-left: 0.18rem;
+      font-size: 0.68rem;
+    }
   }
 </style>
