@@ -58,41 +58,36 @@
       {
         label: 'Energy',
         icon: Zap,
-        val1: `${breed1.energyLevel} / 5`,
-        val2: `${breed2.energyLevel} / 5`,
-        pill: 'energy',
+        rating1: breed1.energyLevel,
+        rating2: breed2.energyLevel,
         iconClass: 'energy'
       },
       {
         label: 'Strength',
         icon: Dumbbell,
-        val1: `${breed1.strength} / 5`,
-        val2: `${breed2.strength} / 5`,
-        pill: 'strength',
+        rating1: breed1.strength,
+        rating2: breed2.strength,
         iconClass: 'strength'
       },
       {
         label: 'Grooming',
         icon: Scissors,
-        val1: `${breed1.groomingNeeds} / 5`,
-        val2: `${breed2.groomingNeeds} / 5`,
-        pill: 'grooming',
+        rating1: breed1.groomingNeeds,
+        rating2: breed2.groomingNeeds,
         iconClass: 'grooming'
       },
       {
         label: 'Trainability',
         icon: GraduationCap,
-        val1: `${breed1.trainability} / 5`,
-        val2: `${breed2.trainability} / 5`,
-        pill: 'train',
+        rating1: breed1.trainability,
+        rating2: breed2.trainability,
         iconClass: 'train'
       },
       {
         label: 'Barking',
         icon: Volume2,
-        val1: `${breed1.barkingLevel} / 5`,
-        val2: `${breed2.barkingLevel} / 5`,
-        pill: 'bark',
+        rating1: breed1.barkingLevel,
+        rating2: breed2.barkingLevel,
         iconClass: 'bark'
       }
     ];
@@ -244,10 +239,8 @@
         {#each numericRows as row}<CompareMatrixRow
             label={row.label}
             icon={row.icon}
-            val1={row.val1}
-            val2={row.val2}
-            val1Pill={row.pill}
-            val2Pill={row.pill}
+            rating1={row.rating1}
+            rating2={row.rating2}
             iconClass={row.iconClass}
           />{/each}
         {#each lifestyleRows as row}<CompareMatrixRow
@@ -284,23 +277,29 @@
     border-radius: var(--radius-lg);
     background: var(--bg-card);
     scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
   }
   .matrix-card {
-    min-width: 820px;
+    width: 100%;
+    min-width: 320px;
     color: var(--text-main);
   }
   .matrix-grid {
     display: grid;
-    grid-template-columns: 220px minmax(260px, 1fr) minmax(260px, 1fr);
+    grid-template-columns: 220px 1fr 1fr;
     align-items: center;
   }
   .header-row {
+    position: sticky;
+    top: 0;
+    z-index: 10;
     border-bottom: 1px solid var(--border-highlight);
     background: var(--bg-surface);
   }
   .matrix-cell {
     padding: 1rem 1.15rem;
     font-size: 0.82rem;
+    min-width: 0;
   }
   .label-cell {
     color: var(--text-muted);
@@ -320,6 +319,11 @@
     color: var(--text-main);
     font-size: 0.78rem;
     font-weight: 700;
+    cursor: pointer;
+  }
+  .breed-select-picker:focus {
+    border-color: var(--border-highlight);
+    outline: none;
   }
   .header-photo-wrapper {
     position: relative;
@@ -344,10 +348,42 @@
     white-space: nowrap;
     border: 0;
   }
+  @media (max-width: 768px) {
+    .matrix-grid {
+      grid-template-columns: 160px 1fr 1fr;
+    }
+    .matrix-cell {
+      padding: 0.75rem 0.85rem;
+    }
+    .header-photo-wrapper {
+      height: 108px;
+    }
+  }
   @media (max-width: 560px) {
     .compare-section {
       width: min(100% - 1.25rem, 1120px);
       padding-top: 2.25rem;
+    }
+    .matrix-grid {
+      grid-template-columns: 110px 1fr 1fr;
+    }
+    .matrix-cell {
+      padding: 0.65rem 0.45rem;
+    }
+    .label-cell {
+      font-size: 0.72rem;
+    }
+    .selector-cell {
+      gap: 0.4rem;
+    }
+    .breed-select-picker {
+      min-height: 34px;
+      padding: 0.35rem 0.4rem;
+      font-size: 0.72rem;
+    }
+    .header-photo-wrapper {
+      height: 80px;
+      border-radius: var(--radius-sm);
     }
   }
 </style>

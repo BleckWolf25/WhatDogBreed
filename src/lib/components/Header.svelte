@@ -75,10 +75,6 @@
     }
   }
 
-  function toggleUnitSystem() {
-    unitSystemStore.set(unitSystem === 'Imperial' ? 'Metric' : 'Imperial');
-  }
-
   async function handleMyDogClick() {
     const profile = getMyDogProfile();
     if (!profile) return;
@@ -145,16 +141,24 @@
         </a>
       {/if}
 
-      <!-- Desktop Unit Toggle Button -->
-      <button
-        class="utility-btn desktop-only"
-        onclick={toggleUnitSystem}
-        title={`Switch measurement units (currently ${unitSystem === 'Imperial' ? 'US / lbs' : 'EU / kg'})`}
-        aria-label="Switch measurement units"
-      >
-        <Ruler size={15} strokeWidth={1.8} aria-hidden="true" />
-        <span>{unitSystem === 'Imperial' ? 'US / lbs' : 'EU / kg'}</span>
-      </button>
+      <!-- Unit Dropdown -->
+      <div class="unit-dropdown-wrap" title="Switch measurement units">
+        <Ruler size={14} strokeWidth={1.8} aria-hidden="true" class="unit-dropdown-icon" />
+        <select
+          class="unit-dropdown-select"
+          aria-label="Switch measurement units"
+          value={unitSystem}
+          onchange={(e) => {
+            unitSystemStore.set(
+              (e.currentTarget as HTMLSelectElement).value as 'Imperial' | 'Metric'
+            );
+          }}
+        >
+          <option value="Imperial">US (lbs)</option>
+          <option value="Metric">EU (kg)</option>
+        </select>
+        <ChevronDown size={12} strokeWidth={2} aria-hidden="true" class="unit-dropdown-chevron" />
+      </div>
 
       <!-- Mobile Unit Dropdown -->
       <div class="mobile-only unit-dropdown-wrap" title="Switch measurement units">
@@ -359,7 +363,7 @@
     color: var(--text-main);
   }
 
-  /* Mobile Unit Dropdown Styling */
+  /* Unit Dropdown Styling */
   .unit-dropdown-wrap {
     position: relative;
     display: inline-flex;
@@ -446,14 +450,6 @@
       width: min(100% - 1.25rem, 1280px);
       grid-template-columns: 1fr auto;
       padding: 0.65rem 0;
-    }
-
-    .desktop-only {
-      display: none !important;
-    }
-
-    .mobile-only {
-      display: inline-flex !important;
     }
 
     .brand-copy span {

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import RatingDots from '$lib/components/ui/RatingDots.svelte';
+
   /* eslint-disable @typescript-eslint/no-explicit-any */
   let {
     label,
@@ -7,6 +9,8 @@
     val2,
     val1Pill,
     val2Pill,
+    rating1,
+    rating2,
     iconClass
   }: {
     label: string;
@@ -15,6 +19,8 @@
     val2?: string | number;
     val1Pill?: string;
     val2Pill?: string;
+    rating1?: number;
+    rating2?: number;
     iconClass?: string;
   } = $props();
 </script>
@@ -30,14 +36,18 @@
     <span>{label}</span>
   </div>
   <div class="matrix-cell val-cell" role="cell">
-    {#if val1Pill}
+    {#if rating1 !== undefined}
+      <RatingDots value={rating1} />
+    {:else if val1Pill}
       <span class="matrix-pill">{val1Pill}</span>
     {:else}
       <span class="val-text">{val1 ?? '—'}</span>
     {/if}
   </div>
   <div class="matrix-cell val-cell" role="cell">
-    {#if val2Pill}
+    {#if rating2 !== undefined}
+      <RatingDots value={rating2} />
+    {:else if val2Pill}
       <span class="matrix-pill">{val2Pill}</span>
     {:else}
       <span class="val-text">{val2 ?? '—'}</span>
@@ -58,12 +68,12 @@
 
   .matrix-grid {
     display: grid;
-    grid-template-columns: minmax(140px, 1.8fr) 1fr 1fr;
+    grid-template-columns: 220px 1fr 1fr;
     align-items: center;
   }
 
   .matrix-cell {
-    padding: 0.8rem 1rem;
+    padding: 0.85rem 1.15rem;
     min-width: 0;
   }
 
@@ -74,6 +84,26 @@
     color: var(--text-muted);
     font-size: 0.78rem;
     font-weight: 700;
+  }
+
+  .label-cell :global(.icon) {
+    flex-shrink: 0;
+  }
+
+  :global(.icon.energy) {
+    color: var(--warning);
+  }
+  :global(.icon.strength) {
+    color: #c97a5a;
+  }
+  :global(.icon.grooming) {
+    color: var(--info);
+  }
+  :global(.icon.train) {
+    color: var(--accent-primary);
+  }
+  :global(.icon.bark) {
+    color: #d693b1;
   }
 
   .val-cell {
@@ -96,17 +126,46 @@
     font-weight: 700;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
+    .matrix-grid {
+      grid-template-columns: 160px 1fr 1fr;
+    }
+
     .matrix-cell {
-      padding: 0.65rem 0.55rem;
+      padding: 0.75rem 0.85rem;
+    }
+
+    .label-cell {
+      font-size: 0.74rem;
+    }
+
+    .val-cell {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .matrix-grid {
+      grid-template-columns: 110px 1fr 1fr;
+    }
+
+    .matrix-cell {
+      padding: 0.6rem 0.45rem;
     }
 
     .label-cell {
       font-size: 0.71rem;
+      gap: 0.3rem;
+      line-height: 1.25;
     }
 
     .val-cell {
-      font-size: 0.76rem;
+      font-size: 0.74rem;
+    }
+
+    .matrix-pill {
+      font-size: 0.68rem;
+      padding: 0.15rem 0.35rem;
     }
   }
 </style>
