@@ -66,7 +66,7 @@
     "@svelteuidev/composables": "^0.15.7",
     "@svelteuidev/core": "^0.15.7",
     "@vercel/analytics": "^2.0.1",
-    "dayjs": "^1.11.21",
+    "dayjs": "^1.11.23",
     "idb-keyval": "^6.2.2"
   },
   "packageManager": "pnpm@11.21.0+sha512.521705bce689924eac72f5a3587122f362689ef6571e55ba80076fd637c11132ecffada26fad4ea79c485bfddbfd3d5a2a5b05805a77e893de71ec8a6cca3bb1"
