@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Dumbbell, GraduationCap, Info, Scissors, Zap } from '@lucide/svelte';
-  import type { BreedStats } from '$lib/types/scan';
-  import LightboxButton from '$lib/components/ui/LightboxButton.svelte';
+  import type { BreedStats } from '#lib/types/scan';
+  import LightboxButton from '#lib/components/ui/LightboxButton.svelte';
 
   let {
     breed,

@@ -10,9 +10,9 @@
     getSavedScanHistory,
     removeScanFromHistory,
     saveMyDogProfile
-  } from '$lib/services/historyStorage';
-  import type { DogProfile, ScanResult } from '$lib/types/scan';
-  import AnalysisSourceBadge from '$lib/components/ui/AnalysisSourceBadge.svelte';
+  } from '#lib/services/historyStorage';
+  import type { DogProfile, ScanResult } from '#lib/types/scan';
+  import AnalysisSourceBadge from '#lib/components/ui/AnalysisSourceBadge.svelte';
 
   type HistoryEntry = Omit<ScanResult, 'imageUrl'>;
 

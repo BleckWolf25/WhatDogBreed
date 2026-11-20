@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { ArrowRight, X } from '@lucide/svelte';
-  import { BREED_CATALOG_COUNT } from '$lib/data/dogBreeds';
+  import { BREED_CATALOG_COUNT } from '#lib/data/dogBreeds';
 
   const STORAGE_KEY = 'whatdogbreed_onboarding_v1';
 

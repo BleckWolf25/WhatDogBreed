@@ -1,12 +1,12 @@
 <script lang="ts">
   import { Dumbbell, GraduationCap, Scissors, Volume2, Zap } from '@lucide/svelte';
-  import type { BreedStats } from '$lib/types/scan';
-  import RatingDots from '$lib/components/ui/RatingDots.svelte';
-  import LightboxButton from '$lib/components/ui/LightboxButton.svelte';
-  import LifestyleGrid from '$lib/components/ui/LifestyleGrid.svelte';
-  import GenderSpecBlock from '$lib/components/breed/GenderSpecBlock.svelte';
-  import GenderBehaviorBlock from '$lib/components/breed/GenderBehaviorBlock.svelte';
-  import { buildOwnerGuidanceFromCatalog } from '$lib/guidance/buildOwnerGuidance';
+  import type { BreedStats } from '#lib/types/scan';
+  import RatingDots from '#lib/components/ui/RatingDots.svelte';
+  import LightboxButton from '#lib/components/ui/LightboxButton.svelte';
+  import LifestyleGrid from '#lib/components/ui/LifestyleGrid.svelte';
+  import GenderSpecBlock from '#lib/components/breed/GenderSpecBlock.svelte';
+  import GenderBehaviorBlock from '#lib/components/breed/GenderBehaviorBlock.svelte';
+  import { buildOwnerGuidanceFromCatalog } from '#lib/guidance/buildOwnerGuidance';
 
   let {
     breed,

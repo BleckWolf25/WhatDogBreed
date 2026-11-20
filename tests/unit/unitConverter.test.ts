@@ -21,7 +21,7 @@ import {
   formatHeightRange,
   formatMeasurementText,
   formatMixExpectedSize
-} from '$lib/utils/unitConverter';
+} from '#lib/utils/unitConverter';
 
 // ---------- TEST SUITE
 describe('unitConverter', () => {

@@ -10,7 +10,7 @@
     Target,
     Thermometer
   } from '@lucide/svelte';
-  import type { BreedStats } from '$lib/types/scan';
+  import type { BreedStats } from '#lib/types/scan';
 
   let { breed }: { breed: BreedStats } = $props();
 

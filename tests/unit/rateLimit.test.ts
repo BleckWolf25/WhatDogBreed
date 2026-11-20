@@ -16,7 +16,7 @@
  */
 // ---------- IMPORTS
 import { describe, it, expect } from 'vitest';
-import { checkRateLimit, getClientIp } from '$lib/server/rateLimit';
+import { checkRateLimit, getClientIp } from '#lib/server/rateLimit';
 
 // ---------- TEST SUITE
 describe('rateLimit', () => {

@@ -19,7 +19,7 @@
 
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { DOG_BREEDS_DATABASE } from '$lib/data/dogBreeds.server';
+import { DOG_BREEDS_DATABASE } from '#lib/data/dogBreeds.server';
 
 // ---------- SERVER LOAD HANDLER
 

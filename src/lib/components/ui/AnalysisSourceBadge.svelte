@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Bot, FlaskConical, Sparkles } from '@lucide/svelte';
-  import StatusBadge from '$lib/components/ui/StatusBadge.svelte';
-  import type { ScanResult } from '$lib/types/scan';
+  import StatusBadge from '#lib/components/ui/StatusBadge.svelte';
+  import type { ScanResult } from '#lib/types/scan';
 
   let {
     analysisSource = 'fallback',

@@ -19,8 +19,8 @@
 
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { logFeedbackEvent } from '$lib/server/observability/feedbackLogger';
-import { checkRateLimit, getClientIp, RATE_LIMITS } from '$lib/server/rateLimit';
+import { logFeedbackEvent } from '#lib/server/observability/feedbackLogger';
+import { checkRateLimit, getClientIp, RATE_LIMITS } from '#lib/server/rateLimit';
 
 // ---------- HTTP POST ENDPOINT
 

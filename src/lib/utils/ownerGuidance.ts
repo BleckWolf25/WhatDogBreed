@@ -17,11 +17,11 @@
 
 // ---------- IMPORTS
 
-import type { BreedStats, OwnerGuidance, ScanResult } from '$lib/types/scan';
+import type { BreedStats, OwnerGuidance, ScanResult } from '#lib/types/scan';
 import {
   buildOffCatalogOwnerGuidance,
   buildOwnerGuidanceFromCatalog
-} from '$lib/guidance/buildOwnerGuidance';
+} from '#lib/guidance/buildOwnerGuidance';
 
 // ---------- GUIDANCE RESOLVER
 

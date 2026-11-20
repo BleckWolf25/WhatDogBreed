@@ -18,8 +18,8 @@
 
 // ---------- IMPORTS
 
-import type { BreedStats, ScanResult } from '$lib/types/scan';
-import breedsJson from '$lib/data/dogBreeds.json';
+import type { BreedStats, ScanResult } from '#lib/types/scan';
+import breedsJson from '#lib/data/dogBreeds.json';
 
 // ---------- CONSTANTS
 

@@ -3,20 +3,18 @@
   import { goto } from '$app/navigation';
   import {
     Camera,
-    ChevronDown,
     Dog,
     Download,
     GitCompare,
     Heart,
     History,
     Moon,
-    Ruler,
     Search,
     Sun
   } from '@lucide/svelte';
-  import { activeScanResultStore, unitSystemStore } from '$lib/stores/appState';
-  import { getMyDogProfile, getSavedScanHistory } from '$lib/services/historyStorage';
-  import { getScanImage } from '$lib/services/scanImageStorage';
+  import { activeScanResultStore, unitSystemStore } from '#lib/stores/appState';
+  import { getMyDogProfile, getSavedScanHistory } from '#lib/services/historyStorage';
+  import { getScanImage } from '#lib/services/scanImageStorage';
 
   let { onToggleTheme, isDarkMode = true } = $props();
 
@@ -141,41 +139,20 @@
         </a>
       {/if}
 
-      <!-- Unit Dropdown -->
-      <div class="unit-dropdown-wrap" title="Switch measurement units">
-        <Ruler size={14} strokeWidth={1.8} aria-hidden="true" class="unit-dropdown-icon" />
-        <select
-          class="unit-dropdown-select"
-          aria-label="Switch measurement units"
-          value={unitSystem}
-          onchange={(e) => {
-            unitSystemStore.set(
-              (e.currentTarget as HTMLSelectElement).value as 'Imperial' | 'Metric'
-            );
-          }}
-        >
-          <option value="Imperial">US (lbs)</option>
-          <option value="Metric">EU (kg)</option>
-        </select>
-        <ChevronDown size={12} strokeWidth={2} aria-hidden="true" class="unit-dropdown-chevron" />
-      </div>
-
-      <!-- Mobile Unit Dropdown -->
-      <div class="mobile-only unit-dropdown-wrap" title="Switch measurement units">
-        <Ruler size={14} strokeWidth={1.8} aria-hidden="true" class="unit-dropdown-icon" />
-        <select
-          class="unit-dropdown-select"
-          aria-label="Switch measurement units"
-          value={unitSystem}
-          onchange={(e) => {
-            unitSystemStore.set((e.currentTarget as HTMLSelectElement).value as 'Imperial' | 'Metric');
-          }}
-        >
-          <option value="Imperial">US (lbs)</option>
-          <option value="Metric">EU (kg)</option>
-        </select>
-        <ChevronDown size={12} strokeWidth={2} aria-hidden="true" class="unit-dropdown-chevron" />
-      </div>
+      <select
+        class="breed-select-picker unit-select"
+        aria-label="Switch measurement units"
+        title="Switch measurement units"
+        value={unitSystem}
+        onchange={(e) => {
+          unitSystemStore.set(
+            (e.currentTarget as HTMLSelectElement).value as 'Imperial' | 'Metric'
+          );
+        }}
+      >
+        <option value="Imperial">US (lbs)</option>
+        <option value="Metric">EU (kg)</option>
+      </select>
 
       {#if installPromptEvent}
         <button
@@ -317,14 +294,6 @@
     gap: 0.45rem;
   }
 
-  .desktop-only {
-    display: inline-flex;
-  }
-
-  .mobile-only {
-    display: none;
-  }
-
   .utility-btn,
   .theme-toggle-btn {
     min-height: 36px;
@@ -363,64 +332,24 @@
     color: var(--text-main);
   }
 
-  /* Unit Dropdown Styling */
-  .unit-dropdown-wrap {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
+  .unit-select {
+    width: auto;
+    min-width: 6.75rem;
     min-height: 36px;
-    background: var(--bg-surface);
+    padding: 0.4rem 0.55rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-sm);
-    color: var(--text-muted);
-    transition:
-      border-color 160ms ease,
-      background-color 160ms ease;
-  }
-
-  .unit-dropdown-wrap:hover,
-  .unit-dropdown-wrap:focus-within {
-    border-color: var(--border-highlight);
-    background: var(--accent-soft);
-    color: var(--text-main);
-  }
-
-  :global(.unit-dropdown-icon) {
-    position: absolute;
-    left: 0.5rem;
-    pointer-events: none;
-    color: var(--accent-primary);
-    flex-shrink: 0;
-  }
-
-  :global(.unit-dropdown-chevron) {
-    position: absolute;
-    right: 0.45rem;
-    pointer-events: none;
-    color: var(--text-subtle);
-    flex-shrink: 0;
-  }
-
-  .unit-dropdown-select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background: transparent;
-    border: 0;
+    background: var(--bg-card);
     color: var(--text-main);
     font-size: 0.72rem;
     font-weight: 700;
-    padding: 0.4rem 1.45rem 0.4rem 1.65rem;
     cursor: pointer;
-    border-radius: var(--radius-sm);
-    outline: none;
   }
 
-  .unit-dropdown-select option {
-    background: var(--bg-card);
-    color: var(--text-main);
-    font-size: 0.8rem;
-    padding: 0.4rem;
+  .unit-select:hover,
+  .unit-select:focus {
+    border-color: var(--border-highlight);
+    outline: none;
   }
 
   .my-dog-btn {

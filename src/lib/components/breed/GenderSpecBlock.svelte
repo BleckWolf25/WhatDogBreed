@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { BreedStats } from '$lib/types/scan';
-  import { formatHeightRange, formatWeightRange } from '$lib/utils/unitConverter';
+  import type { BreedStats } from '#lib/types/scan';
+  import { formatHeightRange, formatWeightRange } from '#lib/utils/unitConverter';
 
   let {
     breed,

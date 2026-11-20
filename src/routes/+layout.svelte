@@ -1,15 +1,15 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import '../app.css';
-  import Header from '$lib/components/Header.svelte';
-  import Footer from '$lib/components/Footer.svelte';
-  import OfflineBanner from '$lib/components/ui/OfflineBanner.svelte';
-  import OnboardingTour from '$lib/components/ui/OnboardingTour.svelte';
-  import { activeLightboxImageStore, themeStore, type LightboxPayload } from '$lib/stores/appState';
+  import Header from '#lib/components/Header.svelte';
+  import Footer from '#lib/components/Footer.svelte';
+  import OfflineBanner from '#lib/components/ui/OfflineBanner.svelte';
+  import OnboardingTour from '#lib/components/ui/OnboardingTour.svelte';
+  import { activeLightboxImageStore, themeStore, type LightboxPayload } from '#lib/stores/appState';
   import {
     registerServiceWorker,
     prefetchOfflineAssets
-  } from '$lib/services/registerServiceWorker';
+  } from '#lib/services/registerServiceWorker';
   import { X } from '@lucide/svelte';
 
   let { children } = $props();

@@ -7,7 +7,7 @@
    */
 
   import { Maximize2 } from '@lucide/svelte';
-  import { openPhotoLightbox } from '$lib/utils/lightbox';
+  import { openPhotoLightbox } from '#lib/utils/lightbox';
 
   let {
     imageUrl,

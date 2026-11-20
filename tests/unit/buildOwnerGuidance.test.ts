@@ -19,8 +19,8 @@ import { describe, it, expect } from 'vitest';
 import {
   buildOwnerGuidanceFromCatalog,
   buildOffCatalogOwnerGuidance
-} from '$lib/guidance/buildOwnerGuidance';
-import { DOG_BREEDS_DATABASE } from '$lib/data/dogBreeds.server';
+} from '#lib/guidance/buildOwnerGuidance';
+import { DOG_BREEDS_DATABASE } from '#lib/data/dogBreeds.server';
 
 // ---------- TEST SUITE
 describe('buildOwnerGuidance', () => {

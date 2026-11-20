@@ -17,7 +17,7 @@
 
 // ---------- IMPORTS
 
-import type { BreedStats, ScanResult } from '$lib/types/scan';
+import type { BreedStats, ScanResult } from '#lib/types/scan';
 
 // ---------- TYPES
 

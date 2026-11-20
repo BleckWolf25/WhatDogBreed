@@ -1,9 +1,9 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-  import ScanHistory from '$lib/components/ScanHistory.svelte';
-  import type { ScanResult } from '$lib/types/scan';
-  import { activeScanResultStore } from '$lib/stores/appState';
-  import { getScanImage } from '$lib/services/scanImageStorage';
+  import ScanHistory from '#lib/components/ScanHistory.svelte';
+  import type { ScanResult } from '#lib/types/scan';
+  import { activeScanResultStore } from '#lib/stores/appState';
+  import { getScanImage } from '#lib/services/scanImageStorage';
 
   type HistoryEntry = Omit<ScanResult, 'imageUrl'>;
 

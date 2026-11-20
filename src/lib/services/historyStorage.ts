@@ -17,9 +17,9 @@
 
 // ---------- IMPORTS
 
-import type { DogProfile, ScanResult } from '$lib/types/scan';
-import { createThumbnail } from '$lib/services/imageProcessor';
-import { saveScanImage, deleteScanImage, clearAllScanImages } from '$lib/services/scanImageStorage';
+import type { DogProfile, ScanResult } from '#lib/types/scan';
+import { createThumbnail } from '#lib/services/imageProcessor';
+import { saveScanImage, deleteScanImage, clearAllScanImages } from '#lib/services/scanImageStorage';
 
 // ---------- CONSTANTS
 

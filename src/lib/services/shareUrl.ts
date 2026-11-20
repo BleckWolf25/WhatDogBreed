@@ -17,8 +17,8 @@
 
 // ---------- IMPORTS
 
-import type { ScanResult } from '$lib/types/scan';
-import { createShareThumbnail } from '$lib/services/imageProcessor';
+import type { ScanResult } from '#lib/types/scan';
+import { createShareThumbnail } from '#lib/services/imageProcessor';
 
 // ---------- CONSTANTS
 

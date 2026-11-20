@@ -19,7 +19,7 @@ import { describe, it, expect } from 'vitest';
 import {
   parseGeminiAnalysisResponse,
   type GeminiAnalysisPayload
-} from '$lib/server/ai/parseResponse';
+} from '#lib/server/ai/parseResponse';
 
 // ---------- TEST SUITE
 describe('parseResponse', () => {

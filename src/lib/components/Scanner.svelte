@@ -6,18 +6,18 @@
     compressAndEncodeImage,
     dataUrlToBlob,
     resolvePersistableImageUrl
-  } from '$lib/services/imageProcessor';
-  import type { ScanResult } from '$lib/types/scan';
-  import GenderProfileSelector from '$lib/components/scan/GenderProfileSelector.svelte';
-  import ScanAnimationLaser from '$lib/components/scan/ScanAnimationLaser.svelte';
-  import PhotoGuidanceOverlay from '$lib/components/scan/PhotoGuidanceOverlay.svelte';
-  import PhotoTipsPanel from '$lib/components/scan/PhotoTipsPanel.svelte';
-  import StatusBadge from '$lib/components/ui/StatusBadge.svelte';
+  } from '#lib/services/imageProcessor';
+  import type { ScanResult } from '#lib/types/scan';
+  import GenderProfileSelector from '#lib/components/scan/GenderProfileSelector.svelte';
+  import ScanAnimationLaser from '#lib/components/scan/ScanAnimationLaser.svelte';
+  import PhotoGuidanceOverlay from '#lib/components/scan/PhotoGuidanceOverlay.svelte';
+  import PhotoTipsPanel from '#lib/components/scan/PhotoTipsPanel.svelte';
+  import StatusBadge from '#lib/components/ui/StatusBadge.svelte';
   import {
     analyzePhotoQuality,
     getPhotoQualityMessage,
     type PhotoQualityResult
-  } from '$lib/services/photoQualityCheck';
+  } from '#lib/services/photoQualityCheck';
 
   let { onScanComplete }: { onScanComplete: (result: ScanResult) => void } = $props();
 
@@ -243,16 +243,10 @@
 
       const resultData: ScanResult = await response.json();
       isLoading = false;
-      void import('@vercel/analytics').then(({ track }) => track('scan_complete'));
       onScanComplete({ ...resultData, imageUrl: persistableImageUrl });
     } catch (error) {
       console.error('Scan submission error:', error);
       isLoading = false;
-      void import('@vercel/analytics').then(({ track }) =>
-        track('scan_failed', {
-          status: error instanceof Error && error.message.includes('Too many') ? '429' : 'error'
-        })
-      );
       errorMessage =
         error instanceof Error
           ? error.message

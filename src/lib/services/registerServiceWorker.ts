@@ -16,7 +16,7 @@
  * @updated 14/08/2026
  */
 
-import { dev } from '$app/environment';
+import { dev } from '$app/env';
 
 // ---------- SERVICE WORKER REGISTRATION
 
@@ -80,7 +80,7 @@ export async function prefetchOfflineAssets(): Promise<void> {
 
   try {
     const [{ loadDogBreeds }, routes] = await Promise.all([
-      import('$lib/data/dogBreeds'),
+      import('#lib/data/dogBreeds'),
       Promise.all([
         fetch('/encyclopedia', { cache: 'reload' }),
         fetch('/manifest.json'),

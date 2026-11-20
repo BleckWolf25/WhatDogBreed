@@ -1,11 +1,11 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { page } from '$app/state';
-  import Scanner from '$lib/components/Scanner.svelte';
-  import ScanResultCard from '$lib/components/ScanResultCard.svelte';
-  import type { ScanResult } from '$lib/types/scan';
-  import { activeScanResultStore } from '$lib/stores/appState';
-  import { parseShareParamFromUrl } from '$lib/services/shareUrl';
+  import Scanner from '#lib/components/Scanner.svelte';
+  import ScanResultCard from '#lib/components/ScanResultCard.svelte';
+  import type { ScanResult } from '#lib/types/scan';
+  import { activeScanResultStore } from '#lib/stores/appState';
+  import { parseShareParamFromUrl } from '#lib/services/shareUrl';
 
   let activeScanResult = $state<ScanResult | null>(null);
 

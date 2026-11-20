@@ -1,11 +1,11 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { RotateCcw, Search } from '@lucide/svelte';
-  import { loadDogBreeds } from '$lib/data/dogBreeds';
-  import type { BreedStats } from '$lib/types/scan';
-  import { unitSystemStore } from '$lib/stores/appState';
-  import BreedCard from '$lib/components/breed/BreedCard.svelte';
-  import BreedDetailModal from '$lib/components/breed/BreedDetailModal.svelte';
+  import { loadDogBreeds } from '#lib/data/dogBreeds';
+  import type { BreedStats } from '#lib/types/scan';
+  import { unitSystemStore } from '#lib/stores/appState';
+  import BreedCard from '#lib/components/breed/BreedCard.svelte';
+  import BreedDetailModal from '#lib/components/breed/BreedDetailModal.svelte';
 
   let {
     onSelectForMix,

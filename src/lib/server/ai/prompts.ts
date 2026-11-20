@@ -17,7 +17,7 @@
 
 // ---------- IMPORTS
 
-import { getPromptBreedHintList } from '$lib/data/dogBreeds.server';
+import { getPromptBreedHintList } from '#lib/data/dogBreeds.server';
 
 // ---------- PROMPT GENERATORS
 

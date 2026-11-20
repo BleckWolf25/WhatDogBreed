@@ -19,12 +19,12 @@
     Volume2,
     Zap
   } from '@lucide/svelte';
-  import { loadDogBreeds } from '$lib/data/dogBreeds';
-  import type { BreedStats } from '$lib/types/scan';
-  import { unitSystemStore } from '$lib/stores/appState';
-  import { formatHeightRange, formatWeightRange } from '$lib/utils/unitConverter';
-  import LightboxButton from '$lib/components/ui/LightboxButton.svelte';
-  import CompareMatrixRow from '$lib/components/compare/CompareMatrixRow.svelte';
+  import { loadDogBreeds } from '#lib/data/dogBreeds';
+  import type { BreedStats } from '#lib/types/scan';
+  import { unitSystemStore } from '#lib/stores/appState';
+  import { formatHeightRange, formatWeightRange } from '#lib/utils/unitConverter';
+  import LightboxButton from '#lib/components/ui/LightboxButton.svelte';
+  import CompareMatrixRow from '#lib/components/compare/CompareMatrixRow.svelte';
 
   let breeds = $state<BreedStats[]>([]);
   let isLoading = $state(true);

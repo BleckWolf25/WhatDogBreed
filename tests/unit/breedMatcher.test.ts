@@ -20,9 +20,9 @@ import {
   findBreedByName,
   resolveBreedsFromScanResult,
   findSimilarBreeds
-} from '$lib/utils/breedMatcher';
-import { DOG_BREEDS_DATABASE } from '$lib/data/dogBreeds.server';
-import type { ScanResult } from '$lib/types/scan';
+} from '#lib/utils/breedMatcher';
+import { DOG_BREEDS_DATABASE } from '#lib/data/dogBreeds.server';
+import type { ScanResult } from '#lib/types/scan';
 
 // ---------- TEST SUITE
 describe('breedMatcher', () => {

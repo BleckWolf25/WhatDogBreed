@@ -19,13 +19,13 @@
 
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { analyzeImage } from '$lib/server/scan/analyzeImage';
-import { validateScanRequest } from '$lib/server/scan/validateRequest';
-import { getGeminiKey } from '$lib/server/env';
-import { logScanEvent } from '$lib/server/observability/scanLogger';
-import { checkRateLimit, getClientIp, RATE_LIMITS } from '$lib/server/rateLimit';
-import { GEMINI_VISION_MODEL } from '$lib/server/ai/geminiVisionAnalyzer';
-import type { ScanResult } from '$lib/types/scan';
+import { analyzeImage } from '#lib/server/scan/analyzeImage';
+import { validateScanRequest } from '#lib/server/scan/validateRequest';
+import { getGeminiKey } from '#lib/server/env';
+import { logScanEvent } from '#lib/server/observability/scanLogger';
+import { checkRateLimit, getClientIp, RATE_LIMITS } from '#lib/server/rateLimit';
+import { GEMINI_VISION_MODEL } from '#lib/server/ai/geminiVisionAnalyzer';
+import type { ScanResult } from '#lib/types/scan';
 
 // ---------- CONFIGURATION
 
