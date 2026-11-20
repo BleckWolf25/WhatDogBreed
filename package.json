@@ -65,7 +65,6 @@
     "@lucide/svelte": "^1.73.0",
     "@svelteuidev/composables": "^0.15.7",
     "@svelteuidev/core": "^0.15.7",
-    "@vercel/analytics": "^2.0.1",
     "dayjs": "^1.11.23",
     "idb-keyval": "^6.3.0"
   },

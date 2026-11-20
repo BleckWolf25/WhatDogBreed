@@ -243,16 +243,10 @@
 
       const resultData: ScanResult = await response.json();
       isLoading = false;
-      void import('@vercel/analytics').then(({ track }) => track('scan_complete'));
       onScanComplete({ ...resultData, imageUrl: persistableImageUrl });
     } catch (error) {
       console.error('Scan submission error:', error);
       isLoading = false;
-      void import('@vercel/analytics').then(({ track }) =>
-        track('scan_failed', {
-          status: error instanceof Error && error.message.includes('Too many') ? '429' : 'error'
-        })
-      );
       errorMessage =
         error instanceof Error
           ? error.message
