@@ -16,12 +16,12 @@
  */
 // ---------- IMPORTS
 import { GoogleGenAI } from '@google/genai';
-import { getSystemAnalysisPrompt } from '$lib/server/ai/prompts';
+import { getSystemAnalysisPrompt } from '#lib/server/ai/prompts';
 import {
   parseGeminiAnalysisResponse,
   type GeminiAnalysisPayload
-} from '$lib/server/ai/parseResponse';
-import type { VisionAnalyzer, VisionAnalyzerInput } from '$lib/server/ai/types';
+} from '#lib/server/ai/parseResponse';
+import type { VisionAnalyzer, VisionAnalyzerInput } from '#lib/server/ai/types';
 
 // ---------- CONSTANTS
 export const GEMINI_VISION_MODEL = 'gemini-3.6-flash';

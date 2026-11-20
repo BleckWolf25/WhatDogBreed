@@ -12,9 +12,9 @@
     Search,
     Sun
   } from '@lucide/svelte';
-  import { activeScanResultStore, unitSystemStore } from '$lib/stores/appState';
-  import { getMyDogProfile, getSavedScanHistory } from '$lib/services/historyStorage';
-  import { getScanImage } from '$lib/services/scanImageStorage';
+  import { activeScanResultStore, unitSystemStore } from '#lib/stores/appState';
+  import { getMyDogProfile, getSavedScanHistory } from '#lib/services/historyStorage';
+  import { getScanImage } from '#lib/services/scanImageStorage';
 
   let { onToggleTheme, isDarkMode = true } = $props();
 

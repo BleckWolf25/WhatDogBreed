@@ -17,9 +17,9 @@
 
 // ---------- IMPORTS
 
-import { DOG_BREEDS_DATABASE } from '$lib/data/dogBreeds.server';
-import { buildOwnerGuidanceFromCatalog, summarizeCarePlan } from '$lib/guidance/buildOwnerGuidance';
-import type { ScanResult } from '$lib/types/scan';
+import { DOG_BREEDS_DATABASE } from '#lib/data/dogBreeds.server';
+import { buildOwnerGuidanceFromCatalog, summarizeCarePlan } from '#lib/guidance/buildOwnerGuidance';
+import type { ScanResult } from '#lib/types/scan';
 
 // ---------- HELPER FUNCTIONS
 

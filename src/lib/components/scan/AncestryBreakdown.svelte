@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Eye } from '@lucide/svelte';
-  import type { BreedMixItem } from '$lib/types/scan';
+  import type { BreedMixItem } from '#lib/types/scan';
 
   let { mixBreakdown }: { mixBreakdown: BreedMixItem[] } = $props();
 </script>

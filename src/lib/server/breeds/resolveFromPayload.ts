@@ -17,7 +17,7 @@
 
 // ---------- IMPORTS
 
-import { DOG_BREEDS_DATABASE } from '$lib/data/dogBreeds.server';
+import { DOG_BREEDS_DATABASE } from '#lib/data/dogBreeds.server';
 
 // ---------- CONSTANTS
 

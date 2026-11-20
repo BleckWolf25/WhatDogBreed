@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BREED_CATALOG_COUNT } from '$lib/data/dogBreeds';
+  import { BREED_CATALOG_COUNT } from '#lib/data/dogBreeds';
 
   const FAQ = [
     {

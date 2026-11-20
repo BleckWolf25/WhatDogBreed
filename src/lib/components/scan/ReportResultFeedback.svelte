@@ -1,6 +1,6 @@
 <script lang="ts">
   import { CheckCircle, MessageSquareWarning } from '@lucide/svelte';
-  import type { ScanResult } from '$lib/types/scan';
+  import type { ScanResult } from '#lib/types/scan';
 
   let { result }: { result: ScanResult } = $props();
 

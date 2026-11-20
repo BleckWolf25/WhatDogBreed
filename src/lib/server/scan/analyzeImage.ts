@@ -18,9 +18,9 @@
 
 // ---------- IMPORTS
 
-import { createGeminiVisionAnalyzer, GeminiVisionError } from '$lib/server/ai/geminiVisionAnalyzer';
-import { findBreedFromPayload } from '$lib/server/breeds/resolveFromPayload';
-import type { ScanResult } from '$lib/types/scan';
+import { createGeminiVisionAnalyzer, GeminiVisionError } from '#lib/server/ai/geminiVisionAnalyzer';
+import { findBreedFromPayload } from '#lib/server/breeds/resolveFromPayload';
+import type { ScanResult } from '#lib/types/scan';
 
 // ---------- TYPES
 
@@ -73,7 +73,7 @@ export async function analyzeImage(
       `[analyzeImage] Using fallback analysis: apiKey=${apiKey ? 'PRESENT (' + apiKey.slice(0, 6) + '...)' : 'MISSING'}, presetBreed=${detectedPresetBreed || 'NONE'}`
     );
     const { generateFeatureHashAnalysisResult } =
-      await import('$lib/server/breeds/fallbackAnalysis');
+      await import('#lib/server/breeds/fallbackAnalysis');
     return {
       analysis: generateFeatureHashAnalysisResult(cleanBase64, userGender, detectedPresetBreed),
       source: 'fallback',
@@ -109,7 +109,7 @@ export async function analyzeImage(
     }
 
     const { generateFeatureHashAnalysisResult } =
-      await import('$lib/server/breeds/fallbackAnalysis');
+      await import('#lib/server/breeds/fallbackAnalysis');
     return {
       analysis: generateFeatureHashAnalysisResult(cleanBase64, userGender, detectedPresetBreed),
       source: 'fallback',

@@ -17,7 +17,7 @@
 
 // ---------- IMPORTS
 
-import type { ScanResult } from '$lib/types/scan';
+import type { ScanResult } from '#lib/types/scan';
 
 // ---------- TYPES
 

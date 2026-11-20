@@ -20,8 +20,8 @@ import {
   buildShareableScanUrl,
   parseShareableScan,
   parseShareParamFromUrl
-} from '$lib/services/shareUrl';
-import type { ScanResult } from '$lib/types/scan';
+} from '#lib/services/shareUrl';
+import type { ScanResult } from '#lib/types/scan';
 
 // ---------- TEST SUITE
 describe('shareUrl', () => {

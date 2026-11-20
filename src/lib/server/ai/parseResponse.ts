@@ -15,9 +15,9 @@
  * @updated 13/08/2026
  */
 // ---------- IMPORTS
-import type { ScanAnalysis } from '$lib/server/ai/types';
-import type { BreedMixItem, OwnerGuidance } from '$lib/types/scan';
-import { summarizeCarePlan } from '$lib/guidance/buildOwnerGuidance';
+import type { ScanAnalysis } from '#lib/server/ai/types';
+import type { BreedMixItem, OwnerGuidance } from '#lib/types/scan';
+import { summarizeCarePlan } from '#lib/guidance/buildOwnerGuidance';
 
 // ---------- TYPES
 export type GeminiAnalysisPayload = {

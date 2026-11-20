@@ -16,7 +16,7 @@
  */
 // ---------- IMPORTS
 import { describe, it, expect } from 'vitest';
-import { validateScanRequest } from '$lib/server/scan/validateRequest';
+import { validateScanRequest } from '#lib/server/scan/validateRequest';
 
 // ---------- TEST SUITE
 describe('validateRequest', () => {

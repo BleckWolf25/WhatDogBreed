@@ -18,7 +18,7 @@
 
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { DOG_BREEDS_DATABASE } from '$lib/data/dogBreeds.server';
+import { DOG_BREEDS_DATABASE } from '#lib/data/dogBreeds.server';
 
 // ---------- HTTP GET ENDPOINT
 

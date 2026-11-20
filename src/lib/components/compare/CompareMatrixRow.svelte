@@ -1,5 +1,5 @@
 <script lang="ts">
-  import RatingDots from '$lib/components/ui/RatingDots.svelte';
+  import RatingDots from '#lib/components/ui/RatingDots.svelte';
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
   let {

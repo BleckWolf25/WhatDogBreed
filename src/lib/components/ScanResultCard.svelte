@@ -21,38 +21,38 @@
     Sparkles,
     Zap
   } from '@lucide/svelte';
-  import type { BreedStats, OwnerGuidance, ScanResult } from '$lib/types/scan';
-  import { loadDogBreeds } from '$lib/data/dogBreeds';
+  import type { BreedStats, OwnerGuidance, ScanResult } from '#lib/types/scan';
+  import { loadDogBreeds } from '#lib/data/dogBreeds';
   import {
     saveScanToHistory,
     getMyDogProfile,
     setMyDogFromScan,
     linkScanToMyDog
-  } from '$lib/services/historyStorage';
+  } from '#lib/services/historyStorage';
   import {
     copySocialCardToClipboard,
     downloadSocialCardImage,
     generateSocialCardDataUrl,
     shareSocialCard
-  } from '$lib/services/socialCardGenerator';
-  import { buildShareableScanUrl } from '$lib/services/shareUrl';
-  import { findSimilarBreeds, resolveBreedsFromScanResult } from '$lib/utils/breedMatcher';
-  import { resolveOwnerGuidance } from '$lib/utils/ownerGuidance';
+  } from '#lib/services/socialCardGenerator';
+  import { buildShareableScanUrl } from '#lib/services/shareUrl';
+  import { findSimilarBreeds, resolveBreedsFromScanResult } from '#lib/utils/breedMatcher';
+  import { resolveOwnerGuidance } from '#lib/utils/ownerGuidance';
   import {
     selectedCompareBreedStore,
     selectedMixBreedBStore,
     selectedMixBreedStore
-  } from '$lib/stores/appState';
-  import LightboxButton from '$lib/components/ui/LightboxButton.svelte';
-  import LifestyleGrid from '$lib/components/ui/LifestyleGrid.svelte';
-  import AncestryBreakdown from '$lib/components/scan/AncestryBreakdown.svelte';
-  import GenderBehaviorBlock from '$lib/components/breed/GenderBehaviorBlock.svelte';
-  import CareRecommendations from '$lib/components/scan/CareRecommendations.svelte';
-  import OwnerGuidancePanel from '$lib/components/scan/OwnerGuidancePanel.svelte';
-  import VetDisclaimerCard from '$lib/components/scan/VetDisclaimerCard.svelte';
-  import AnalysisSourceBadge from '$lib/components/ui/AnalysisSourceBadge.svelte';
-  import ConfidenceExplainer from '$lib/components/scan/ConfidenceExplainer.svelte';
-  import ReportResultFeedback from '$lib/components/scan/ReportResultFeedback.svelte';
+  } from '#lib/stores/appState';
+  import LightboxButton from '#lib/components/ui/LightboxButton.svelte';
+  import LifestyleGrid from '#lib/components/ui/LifestyleGrid.svelte';
+  import AncestryBreakdown from '#lib/components/scan/AncestryBreakdown.svelte';
+  import GenderBehaviorBlock from '#lib/components/breed/GenderBehaviorBlock.svelte';
+  import CareRecommendations from '#lib/components/scan/CareRecommendations.svelte';
+  import OwnerGuidancePanel from '#lib/components/scan/OwnerGuidancePanel.svelte';
+  import VetDisclaimerCard from '#lib/components/scan/VetDisclaimerCard.svelte';
+  import AnalysisSourceBadge from '#lib/components/ui/AnalysisSourceBadge.svelte';
+  import ConfidenceExplainer from '#lib/components/scan/ConfidenceExplainer.svelte';
+  import ReportResultFeedback from '#lib/components/scan/ReportResultFeedback.svelte';
 
   let { result, onResetScan }: { result: ScanResult; onResetScan: () => void } = $props();
 

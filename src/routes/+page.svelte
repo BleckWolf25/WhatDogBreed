@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Camera, GitCompare, History, Search, ShieldCheck, Sparkles, Dog } from '@lucide/svelte';
-  import { BREED_CATALOG_COUNT } from '$lib/data/dogBreeds';
+  import { BREED_CATALOG_COUNT } from '#lib/data/dogBreeds.ts';
 
   const STEPS = [
     {

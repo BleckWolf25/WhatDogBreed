@@ -30,6 +30,6 @@ export default defineConfig({
     })
   ],
   optimizeDeps: {
-    include: ['@vercel/analytics', '@lucide/svelte', 'dayjs', 'idb-keyval']
+    include: ['dayjs', 'idb-keyval']
   }
 });

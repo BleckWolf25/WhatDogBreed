@@ -17,7 +17,7 @@
 
 // ---------- IMPORTS
 
-import type { BreedStats, OwnerGuidance } from '$lib/types/scan';
+import type { BreedStats, OwnerGuidance } from '#lib/types/scan';
 
 // ---------- CONSTANTS
 

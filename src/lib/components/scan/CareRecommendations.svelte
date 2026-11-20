@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Activity, AlertTriangle, Brain, HeartPulse, Scissors, Utensils } from '@lucide/svelte';
-  import type { CarePlan, OwnerGuidance } from '$lib/types/scan';
+  import type { CarePlan, OwnerGuidance } from '#lib/types/scan';
 
   let {
     guidance

@@ -2,11 +2,11 @@
   import { onMount } from 'svelte';
   import { get } from 'svelte/store';
   import { page } from '$app/state';
-  import BreedCompare from '$lib/components/BreedCompare.svelte';
-  import type { BreedStats } from '$lib/types/scan';
-  import { loadDogBreeds } from '$lib/data/dogBreeds';
-  import { findBreedByName } from '$lib/utils/breedMatcher';
-  import { selectedCompareBreedStore } from '$lib/stores/appState';
+  import BreedCompare from '#lib/components/BreedCompare.svelte';
+  import type { BreedStats } from '#lib/types/scan';
+  import { loadDogBreeds } from '#lib/data/dogBreeds';
+  import { findBreedByName } from '#lib/utils/breedMatcher';
+  import { selectedCompareBreedStore } from '#lib/stores/appState';
 
   let initialBreedA = $state<BreedStats | null>(null);
   let initialBreedB = $state<BreedStats | null>(null);

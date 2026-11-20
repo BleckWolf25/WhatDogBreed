@@ -17,7 +17,7 @@
 
 // ---------- IMPORTS
 
-import { browser, dev } from '$app/environment';
+import { browser, dev } from '$app/env';
 import { injectAnalytics } from '@vercel/analytics/sveltekit';
 
 // ---------- ENVIRONMENT RESOLUTION

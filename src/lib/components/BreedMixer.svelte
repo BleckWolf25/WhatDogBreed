@@ -1,13 +1,13 @@
 <script lang="ts">
   import { onMount, untrack } from 'svelte';
   import { Camera, Dumbbell, GraduationCap, Plus, Scale, Scissors, Zap } from '@lucide/svelte';
-  import { loadDogBreeds, simulateBreedMix } from '$lib/data/dogBreeds';
-  import type { BreedStats } from '$lib/types/scan';
-  import { unitSystemStore } from '$lib/stores/appState';
-  import { formatMixExpectedSize } from '$lib/utils/unitConverter';
-  import RatingDots from '$lib/components/ui/RatingDots.svelte';
-  import LifestyleGrid from '$lib/components/ui/LifestyleGrid.svelte';
-  import GenderBehaviorBlock from '$lib/components/breed/GenderBehaviorBlock.svelte';
+  import { loadDogBreeds, simulateBreedMix } from '#lib/data/dogBreeds';
+  import type { BreedStats } from '#lib/types/scan';
+  import { unitSystemStore } from '#lib/stores/appState';
+  import { formatMixExpectedSize } from '#lib/utils/unitConverter';
+  import RatingDots from '#lib/components/ui/RatingDots.svelte';
+  import LifestyleGrid from '#lib/components/ui/LifestyleGrid.svelte';
+  import GenderBehaviorBlock from '#lib/components/breed/GenderBehaviorBlock.svelte';
 
   let {
     initialParentA,

@@ -1,7 +1,7 @@
 /**
  * @file env.ts
  *
- * @version 1.0.0
+ * @version 1.1.0
  * @author BleckWolf25
  * @license MIT
  *
@@ -12,19 +12,19 @@
  * platform environment objects to resolve API keys such as GEMINI_API_KEY with graceful fallback to empty strings.
  *
  * @since 05/08/2026
- * @updated 13/08/2026
+ * @updated 20/11/2026
  */
 
 // ---------- IMPORTS
 
-import { env } from '$env/dynamic/private';
+import * as privateEnv from '$app/env/private';
 
 // ---------- ENVIRONMENT RESOLVERS
 
 export function getGeminiKey(platform?: App.Platform): string {
   const pEnv = platform?.env as Record<string, string | undefined> | undefined;
   const platformKey = pEnv?.GEMINI_API_KEY || pEnv?.GEMINI;
-  const dynamicEnvMap = env as Record<string, string | undefined>;
+  const dynamicEnvMap = privateEnv as Record<string, string | undefined>;
 
   // ---------- RESOLUTION HIERARCHY
   const key =

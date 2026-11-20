@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { X } from '@lucide/svelte';
-  import type { BreedStats } from '$lib/types/scan';
-  import BreedProfileContent from '$lib/components/breed/BreedProfileContent.svelte';
+  import type { BreedStats } from '#lib/types/scan';
+  import BreedProfileContent from '#lib/components/breed/BreedProfileContent.svelte';
 
   let {
     breed,

@@ -8,10 +8,10 @@
     Scale,
     Stethoscope
   } from '@lucide/svelte';
-  import type { OwnerGuidance } from '$lib/types/scan';
-  import { unitSystemStore } from '$lib/stores/appState';
-  import { BREED_CATALOG_COUNT } from '$lib/data/dogBreeds';
-  import { formatMeasurementText } from '$lib/utils/unitConverter';
+  import type { OwnerGuidance } from '#lib/types/scan';
+  import { unitSystemStore } from '#lib/stores/appState';
+  import { BREED_CATALOG_COUNT } from '#lib/data/dogBreeds';
+  import { formatMeasurementText } from '#lib/utils/unitConverter';
 
   let {
     guidance,

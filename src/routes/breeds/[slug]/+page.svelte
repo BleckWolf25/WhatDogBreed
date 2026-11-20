@@ -1,8 +1,8 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-  import BreedProfileContent from '$lib/components/breed/BreedProfileContent.svelte';
+  import BreedProfileContent from '#lib/components/breed/BreedProfileContent.svelte';
   import type { PageData } from './$types';
-  import { unitSystemStore } from '$lib/stores/appState';
+  import { unitSystemStore } from '#lib/stores/appState';
 
   let { data }: { data: PageData } = $props();
   let unitSystem = $state<'Imperial' | 'Metric'>('Imperial');

@@ -17,7 +17,7 @@
 
 // ---------- IMPORTS
 
-import { activeLightboxImageStore } from '$lib/stores/appState';
+import { activeLightboxImageStore } from '#lib/stores/appState';
 
 // ---------- MODAL TRIGGER
 

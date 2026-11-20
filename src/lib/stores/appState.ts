@@ -17,7 +17,7 @@
 // ---------- IMPORTS
 
 import { writable } from 'svelte/store';
-import type { BreedStats, ScanResult } from '$lib/types/scan';
+import type { BreedStats, ScanResult } from '#lib/types/scan';
 
 // ---------- TYPES
 export type CursorVariant = 'paw' | 'bone' | 'dog' | 'default';
