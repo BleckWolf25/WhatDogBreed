@@ -12,15 +12,12 @@
  * parent candidates from scan breakdown arrays, and ranks similar breeds based on shared group classification, temperament traits, and energy levels.
  *
  * @since 05/08/2026
- * @updated 13/08/2026
+ * @updated 21/11/2026
  */
-
 // ---------- IMPORTS
-
 import type { BreedStats, ScanResult } from '#lib/types/scan';
 
 // ---------- TYPES
-
 export interface ResolvedScanBreeds {
   primary: BreedStats | null;
   secondary: BreedStats | null;
@@ -29,20 +26,37 @@ export interface ResolvedScanBreeds {
 }
 
 // ---------- MATCHING UTILITIES
+function normalizeBreedName(name: string): string {
+  return name
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '');
+}
 
 export function findBreedByName(breeds: BreedStats[], name: string): BreedStats | null {
   if (!name?.trim()) return null;
 
-  const query = name.toLowerCase().trim();
+  const normalizedQuery = normalizeBreedName(name);
+  if (!normalizedQuery) return null;
 
-  return (
-    breeds.find(
-      (breed) =>
-        query.includes(breed.name.toLowerCase()) ||
-        breed.name.toLowerCase().includes(query) ||
-        query.includes(breed.id.replace(/-/g, ' '))
-    ) ?? null
-  );
+  const exactName = breeds.find((breed) => normalizeBreedName(breed.name) === normalizedQuery);
+  if (exactName) return exactName;
+
+  const exactId = breeds.find((breed) => normalizeBreedName(breed.id) === normalizedQuery);
+  if (exactId) return exactId;
+
+  const candidates = breeds
+    .map((breed) => ({
+      breed,
+      nameLength: normalizeBreedName(breed.name).length,
+      nameMatched: normalizeBreedName(breed.name).includes(normalizedQuery),
+      idMatched: normalizeBreedName(breed.id).includes(normalizedQuery)
+    }))
+    .filter(({ nameMatched, idMatched }) => nameMatched || idMatched)
+    .sort((a, b) => b.nameLength - a.nameLength);
+
+  return candidates[0]?.breed ?? null;
 }
 
 export function resolveBreedsFromScanResult(

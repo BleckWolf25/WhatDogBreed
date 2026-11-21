@@ -103,9 +103,13 @@
   function handleResize() {
     if (active) updateTargetRect();
   }
+
+  function handleKeydown(event: KeyboardEvent) {
+    if (event.key === 'Escape' && active) finish();
+  }
 </script>
 
-<svelte:window onresize={handleResize} />
+<svelte:window onresize={handleResize} onkeydown={handleKeydown} />
 
 {#if active && targetRect && currentStep}
   <div class="tour-root" role="dialog" aria-modal="true" aria-labelledby="tour-title">
