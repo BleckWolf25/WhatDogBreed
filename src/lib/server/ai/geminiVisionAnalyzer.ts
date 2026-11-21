@@ -8,7 +8,7 @@
  * @summary Multimodal canine AI vision analyzer implementing Google's official @google/genai SDK.
  *
  * @description
- * Manages authenticated communication with Google Gemini Flash vision models, handles model fallback cascading,
+ * Manages authenticated communication with Google Gemini Flash vision models, bounds model fallback cascading,
  * configures inline base64 image data and structured JSON system instructions, and normalizes returned analyses.
  *
  * @since 05/08/2026
@@ -34,7 +34,8 @@ export const CANDIDATE_MODELS = [
   'gemini-3.7-flash'
 ];
 
-const PER_MODEL_TIMEOUT_MS = 25000;
+const MAX_ANALYSIS_DURATION_MS = 45_000;
+const PER_MODEL_TIMEOUT_MS = 10_000;
 
 // ---------- CLASS: GeminiVisionError
 export class GeminiVisionError extends Error {
@@ -60,10 +61,15 @@ export class GeminiVisionAnalyzer implements VisionAnalyzer {
   async analyze(input: VisionAnalyzerInput) {
     let lastError: unknown = null;
     let attempt = 0;
+    const deadline = Date.now() + MAX_ANALYSIS_DURATION_MS;
 
     // ---------- MODEL CASCADE LOOP
     for (const modelName of CANDIDATE_MODELS) {
+      const timeoutMs = Math.min(PER_MODEL_TIMEOUT_MS, deadline - Date.now());
+      if (timeoutMs <= 0) break;
+
       attempt++;
+      let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
       try {
         console.log(`[GeminiVisionAnalyzer] Requesting vision analysis with model ${modelName}...`);
 
@@ -86,12 +92,12 @@ export class GeminiVisionAnalyzer implements VisionAnalyzer {
         });
 
         const timeoutPromise = new Promise<never>((_, reject) => {
-          setTimeout(
+          timeoutHandle = setTimeout(
             () =>
               reject(
-                new Error(`Timeout of ${PER_MODEL_TIMEOUT_MS}ms exceeded for model ${modelName}`)
+                new Error(`Timeout of ${timeoutMs}ms exceeded for model ${modelName}`)
               ),
-            PER_MODEL_TIMEOUT_MS
+            timeoutMs
           );
         });
 
@@ -130,6 +136,8 @@ export class GeminiVisionAnalyzer implements VisionAnalyzer {
         console.warn(
           `[GeminiVisionAnalyzer] Model ${modelName} attempt failed: ${(error as Error).message || error}`
         );
+      } finally {
+        if (timeoutHandle) clearTimeout(timeoutHandle);
       }
     }
 
