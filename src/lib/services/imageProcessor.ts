@@ -12,11 +12,9 @@
  * enforces maximum payload boundaries for network uploads, and generates lightweight thumbnails for history and shareable URLs.
  *
  * @since 05/08/2026
- * @updated 13/08/2026
+ * @updated 21/11/2026
  */
-
 // ---------- CONSTANTS
-
 const MAX_IMAGE_DIMENSION = 1200;
 const COMPRESSION_QUALITY = 0.85;
 const THUMBNAIL_MAX_DIMENSION = 200;
@@ -26,7 +24,6 @@ export const SHARE_THUMB_MAX_DIMENSION = 400;
 export const SHARE_THUMB_QUALITY = 0.52;
 
 // ---------- HELPER FUNCTIONS
-
 function resizeToJpegDataUrl(
   dataUrl: string,
   maxDimension: number,
@@ -141,7 +138,32 @@ export async function resolvePersistableImageUrl(imageUrl: string): Promise<stri
     return imageUrl;
   }
 
-  const blob = await dataUrlToBlob(imageUrl);
+  const response = await fetch(imageUrl, { cache: 'force-cache' });
+  if (!response.ok) {
+    throw new Error(`Could not load image (${response.status}).`);
+  }
+
+  const blob = await response.blob();
+  if (!blob.type.startsWith('image/') || blob.size === 0) {
+    throw new Error('The loaded sample is not a valid image.');
+  }
+
+  if (blob.size <= 4 * 1024 * 1024) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const dataUrl = reader.result;
+        if (typeof dataUrl === 'string' && dataUrl.startsWith('data:image/')) {
+          resolve(dataUrl);
+        } else {
+          reject(new Error('Failed to read the sample image.'));
+        }
+      };
+      reader.onerror = () => reject(reader.error ?? new Error('Failed to read the sample image.'));
+      reader.readAsDataURL(blob);
+    });
+  }
+
   return compressAndEncodeImage(blob);
 }
 

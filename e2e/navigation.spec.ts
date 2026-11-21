@@ -12,7 +12,7 @@
  * verifies HTTP 200 statuses, checks page title rendering, and tests header link interactivity.
  *
  * @since 05/08/2026
- * @updated 13/08/2026
+ * @updated 21/11/2026
  */
 // ---------- IMPORTS
 import { test, expect } from '@playwright/test';
@@ -28,6 +28,31 @@ test.describe('Application Navigation', () => {
   test('navigates to Scanner page', async ({ page }) => {
     await page.goto('/scanner');
     await expect(page).toHaveTitle(/Scan|Scanner|What Dog Breed/i);
+  });
+
+  test('loads and scans every built-in demo photo', async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('whatdogbreed_onboarding_v1', '1');
+    });
+    await page.goto('/scanner');
+
+    const samples = ['Golden', 'Shepherd', 'Labrador', 'Husky'];
+    for (const sample of samples) {
+      await page.getByRole('button', { name: sample }).click();
+      await expect(page.getByRole('heading', { name: 'Review before you scan' })).toBeVisible();
+
+      const preview = page.getByAltText('Selected dog preview');
+      await expect(preview).toBeVisible();
+      await expect
+        .poll(() =>
+          preview.evaluate((image: HTMLImageElement) => image.naturalWidth * image.naturalHeight)
+        )
+        .toBeGreaterThan(0);
+
+      await page.getByRole('button', { name: 'Scan this photo' }).click();
+      await expect(page.getByText(/Demo photo|demo sample/i).first()).toBeVisible();
+      await page.getByRole('button', { name: 'Scan another dog' }).click();
+    }
   });
 
   test('navigates to Encyclopedia catalog page', async ({ page }) => {

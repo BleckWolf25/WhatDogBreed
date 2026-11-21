@@ -12,16 +12,13 @@
  * embeds downsampled JPEG photo thumbnails when possible, and parses incoming deep-link payloads back into active scan states.
  *
  * @since 05/08/2026
- * @updated 13/08/2026
+ * @updated 21/11/2026
  */
-
 // ---------- IMPORTS
-
 import type { ScanResult } from '#lib/types/scan';
 import { createShareThumbnail } from '#lib/services/imageProcessor';
 
 // ---------- CONSTANTS
-
 const MAX_SHARE_URL_LENGTH = 7800;
 const MAX_TRAITS = 3;
 const MAX_MIX_ITEMS = 4;
@@ -33,7 +30,6 @@ const THUMB_ATTEMPTS: Array<[number, number]> = [
 ];
 
 // ---------- TYPES
-
 interface CompactSharePayload {
   p: string;
   c: number;
@@ -231,7 +227,7 @@ export function parseShareableScan(encoded: string): ScanResult | null {
   }
 }
 
-export function parseShareParamFromUrl(searchParams: URLSearchParams): ScanResult | null {
+export function parseShareParamFromUrl(searchParams: Pick<URLSearchParams, 'get'>): ScanResult | null {
   const encoded = searchParams.get('share');
   if (!encoded) return null;
   return parseShareableScan(encoded);

@@ -12,7 +12,7 @@
  * configures inline base64 image data and structured JSON system instructions, and normalizes returned analyses.
  *
  * @since 05/08/2026
- * @updated 13/08/2026
+ * @updated 21/11/2026
  */
 // ---------- IMPORTS
 import { GoogleGenAI } from '@google/genai';
@@ -21,6 +21,7 @@ import {
   parseGeminiAnalysisResponse,
   type GeminiAnalysisPayload
 } from '#lib/server/ai/parseResponse';
+import { GEMINI_ANALYSIS_RESPONSE_SCHEMA } from '#lib/server/ai/geminiSchema';
 import type { VisionAnalyzer, VisionAnalyzerInput } from '#lib/server/ai/types';
 
 // ---------- CONSTANTS
@@ -79,7 +80,8 @@ export class GeminiVisionAnalyzer implements VisionAnalyzer {
           ],
           config: {
             systemInstruction: getSystemAnalysisPrompt(),
-            responseMimeType: 'application/json'
+            responseMimeType: 'application/json',
+            responseSchema: GEMINI_ANALYSIS_RESPONSE_SCHEMA
           }
         });
 

@@ -12,7 +12,7 @@
  * validates mix percentage breakdowns, and enriches structured owner guidance objects with default fallbacks.
  *
  * @since 05/08/2026
- * @updated 13/08/2026
+ * @updated 21/11/2026
  */
 // ---------- IMPORTS
 import type { ScanAnalysis } from '#lib/server/ai/types';
@@ -126,6 +126,35 @@ export function parseGeminiAnalysisResponse(
       ? summarizeCarePlan(ownerGuidance.carePlan)
       : 'Provide regular daily exercise and balanced nutrition suited for active dogs.');
 
+  const confidenceScore =
+    typeof parsedData.confidenceScore === 'number' && Number.isFinite(parsedData.confidenceScore)
+      ? Math.min(0.99, Math.max(0.5, parsedData.confidenceScore))
+      : 0.92;
+
+  const mixBreakdown = Array.isArray(parsedData.mixBreakdown)
+    ? parsedData.mixBreakdown
+        .filter(
+          (item) =>
+            item &&
+            typeof item.breed === 'string' &&
+            item.breed.trim() !== '' &&
+            typeof item.percentage === 'number' &&
+            Number.isFinite(item.percentage) &&
+            item.percentage >= 0
+        )
+        .map((item) => ({
+          breed: item.breed.trim(),
+          percentage: item.percentage
+        }))
+    : [];
+
+  const mixTotal = mixBreakdown.reduce((total, item) => total + item.percentage, 0);
+  if (mixBreakdown.length > 0 && mixTotal > 0 && mixTotal !== 100) {
+    mixBreakdown.forEach((item) => {
+      item.percentage = Math.round((item.percentage / mixTotal) * 100);
+    });
+  }
+
   const formattedModel = modelName
     ? `Google Gemini ${modelName.replace(/^models\//, '')} Multimodal Vision`
     : 'Google Gemini 3.6 Flash Multimodal Vision';
@@ -134,11 +163,10 @@ export function parseGeminiAnalysisResponse(
   return {
     primaryBreed: parsedData.primaryBreed || 'German Shepherd',
     isMixed: Boolean(parsedData.isMixed),
-    confidenceScore:
-      typeof parsedData.confidenceScore === 'number' ? parsedData.confidenceScore : 0.92,
+    confidenceScore,
     aiModelUsed: formattedModel,
     detectedGender: normalizeDetectedGender(userGender, parsedData.detectedGender),
-    mixBreakdown: Array.isArray(parsedData.mixBreakdown) ? parsedData.mixBreakdown : [],
+    mixBreakdown,
     visualTraits: Array.isArray(parsedData.visualTraits) ? parsedData.visualTraits : [],
     maleBehavioralTraits: Array.isArray(parsedData.maleBehavioralTraits)
       ? parsedData.maleBehavioralTraits

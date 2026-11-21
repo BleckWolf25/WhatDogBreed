@@ -12,7 +12,7 @@
  * and mix breakdown integrity enforcement.
  *
  * @since 05/08/2026
- * @updated 13/08/2026
+ * @updated 21/11/2026
  */
 // ---------- IMPORTS
 import { describe, it, expect } from 'vitest';
@@ -67,5 +67,28 @@ describe('parseResponse', () => {
     expect(() => parseGeminiAnalysisResponse(nonDogPayload)).toThrow(
       'The uploaded image appears to be a cat, not a dog.'
     );
+  });
+
+  it('clamps out-of-range confidence scores', () => {
+    const parsed = parseGeminiAnalysisResponse({
+      isDog: true,
+      primaryBreed: 'Pug',
+      confidenceScore: 12
+    });
+
+    expect(parsed.confidenceScore).toBe(0.99);
+  });
+
+  it('normalizes mix percentages to a total of 100', () => {
+    const parsed = parseGeminiAnalysisResponse({
+      isDog: true,
+      primaryBreed: 'Pug Mix',
+      mixBreakdown: [
+        { breed: 'Pug', percentage: 70 },
+        { breed: 'French Bulldog', percentage: 30 }
+      ]
+    });
+
+    expect(parsed.mixBreakdown.reduce((total, item) => total + item.percentage, 0)).toBe(100);
   });
 });
