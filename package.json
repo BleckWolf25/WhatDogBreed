@@ -62,7 +62,7 @@
   "dependencies": {
     "@google/genai": "^2.32.0",
     "@google/generative-ai": "^0.24.1",
-    "@lucide/svelte": "^1.73.0",
+    "@lucide/svelte": "^1.78.0",
     "@svelteuidev/composables": "^0.15.7",
     "@svelteuidev/core": "^0.15.7",
     "dayjs": "^1.11.23",
